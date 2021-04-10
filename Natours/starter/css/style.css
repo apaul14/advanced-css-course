@@ -33,6 +33,43 @@ body {
   url(../img/hero.jpg); /*img under gradient*/
   background-size: cover; /* img will try to fit width of element/viewport */
   background-position: top; /*ensure top of image stays at top of container/viewport (bottom will be cropped)*/
-  
+  position: relative;
+
   clip-path: polygon(0 0,100% 0,100% 75vh, 0 100%); /*path of img still visible. top left, top right, bottom right, bottom left. clippy clip path maker. */
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px; /* these measurements start from parent container (header). parent must be set to relative position*/
+}
+
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  position: absolute;
+  top: 40%; /* in relation to parent element */
+  left: 50%;
+  transform: translate(-50%, -50%); /* in relation to element itself. shifts 50% of length of elements height and width */
+}
+
+.heading-primary {
+  color:#ffffff;
+  text-transform: uppercase;
+}
+
+.heading-primary-main {
+  display: block; /* occupy entire available width, create line breaks before and after */
+  font-size: 60px;
+  font-weight: 400px;
+  letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700px;
+  letter-spacing: 17.4px;
 }
