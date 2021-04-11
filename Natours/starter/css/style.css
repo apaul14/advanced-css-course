@@ -53,11 +53,15 @@ body {
   top: 40%; /* in relation to parent element */
   left: 50%;
   transform: translate(-50%, -50%); /* in relation to element itself. shifts 50% of length of elements height and width */
+  text-align: center; /* for the button */
 }
 
 .heading-primary {
   color:#ffffff;
   text-transform: uppercase;
+
+  backface-visibility: hidden; /* determines if back part of element is visible. fixes shaking animations */
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -65,6 +69,12 @@ body {
   font-size: 60px;
   font-weight: 400px;
   letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out; /*how a css animation should progress over the duration of each cycle */
+  /* animation-iteration-count: 3; */
+  /* animation-delay: 3s; */
 }
 
 .heading-primary-sub {
@@ -72,4 +82,63 @@ body {
   font-size: 20px;
   font-weight: 700px;
   letter-spacing: 17.4px;
+
+  animation: moveInRight 1s ease-out /* shorthand */
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px); /* default behavior is left to right. -100px moves right to left  */
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px); /* default behavior is left to right. -100px moves right to left  */
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+  /* pseudo class. special state of selector.  */
+.btn:link,
+.btn:visited /* visited state */ {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all 0.2s;  /* transition must be on initial state of button/item */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0, .2); /* adds box shadow */
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0, .2); /* smaller shadow, less blur after clicking button */
+}
+
+.btn-white {
+  background-color: #fff;
+  color:#777
 }
