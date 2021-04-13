@@ -117,6 +117,18 @@ body {
     transform: translate(0);
   }
 }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px); 
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
   /* pseudo class. special state of selector.  */
 .btn:link,
 .btn:visited /* visited state */ {
@@ -126,6 +138,7 @@ body {
   display: inline-block;
   border-radius: 100px;
   transition: all 0.2s;  /* transition must be on initial state of button/item */
+  position:relative;
 }
 
 .btn:hover {
@@ -140,5 +153,37 @@ body {
 
 .btn-white {
   background-color: #fff;
-  color:#777
+  color:#777;
+
+}
+
+/* button that looks exactly like button, but behind it */
+.btn::after {
+  content: "";
+  display:inline-block;
+  height: 100%;
+  width: 100%; /* pseudo elem treated like child of btn, so 100% of btn height/width */
+  position: absolute;
+  border-radius: 100px;
+  top: 0;
+  left: 0;
+  z-index: -1; /* position of elements if they are overlapping/on top of each other */
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation-name: moveInBottom;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: .75s;
+  animation-fill-mode: backwards; /* automatically apply syles of 0% animation rules (on moveinBottom) before animation starts */
 }
