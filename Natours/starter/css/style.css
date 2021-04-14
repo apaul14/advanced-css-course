@@ -8,20 +8,29 @@ Dark green: #28b485
 */
 
 /* simple reset using universal selector. default padding/margin for cross browser functionality. */
-* {
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* change box model so border and padding not added to total width/height */
+  box-sizing: inherit; /* rest of elements will not inherit box-sizing from body declaration */
+}
+
+html {
+  /*font-size: 10px;   now 1 rem = 10px  */
+  font-size: 62.5%; /* default font size is 16px. 10 is 62.5% of 16. allows user to zooom in/resize.  */
 }
 
 body {
   /* any rules related to font put in body rule. properties related to font are inherited, body is parent */
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1.7; /*1.7 times bigger than predefined line height*/
   color: #777;
-  padding: 30px; /* white padding around the whole body */
+  padding: 3rem; /* white padding around the whole body */
+
+  box-sizing: border-box; /* change box model so border and padding not added to total width/height */
 }
 
 .header {
@@ -40,12 +49,12 @@ body {
 
 .logo-box {
   position: absolute;
-  top: 40px;
-  left: 40px; /* these measurements start from parent container (header). parent must be set to relative position*/
+  top: 4rem;
+  left: 4rem; /* these measurements start from parent container (header). parent must be set to relative position*/
 }
 
 .logo {
-  height: 35px;
+  height: 3.5rem;
 }
 
 .text-box {
@@ -61,14 +70,14 @@ body {
   text-transform: uppercase;
 
   backface-visibility: hidden; /* determines if back part of element is visible. fixes shaking animations */
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 }
 
 .heading-primary-main {
   display: block; /* occupy entire available width, create line breaks before and after */
-  font-size: 60px;
-  font-weight: 400px;
-  letter-spacing: 35px;
+  font-size: 6rem;
+  font-weight: 40rem;
+  letter-spacing: 3.5rem;
 
   animation-name: moveInLeft;
   animation-duration: 1s;
@@ -79,9 +88,9 @@ body {
 
 .heading-primary-sub {
   display: block;
-  font-size: 20px;
-  font-weight: 700px;
-  letter-spacing: 17.4px;
+  font-size: 2rem;
+  font-weight: 70rem;
+  letter-spacing: 1.75rem;
 
   animation: moveInRight 1s ease-out /* shorthand */
 }
@@ -89,11 +98,11 @@ body {
 @keyframes moveInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100px); /* default behavior is left to right. -100px moves right to left  */
+    transform: translateX(-10rem); /* default behavior is left to right. -100px moves right to left  */
   }
 
   80% {
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
 
   100% {
@@ -105,11 +114,11 @@ body {
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(100px); /* default behavior is left to right. -100px moves right to left  */
+    transform: translateX(10rem); /* default behavior is left to right. -100px moves right to left  */
   }
 
   80% {
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
 
   100% {
@@ -121,7 +130,7 @@ body {
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(30px); 
+    transform: translateY(3rem); 
   }
 
   100% {
@@ -134,21 +143,22 @@ body {
 .btn:visited /* visited state */ {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
   display: inline-block;
-  border-radius: 100px;
+  border-radius: 10rem;
   transition: all 0.2s;  /* transition must be on initial state of button/item */
   position:relative;
+  font-size: 1.6rem
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0,0,0, .2); /* adds box shadow */
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0,0,0, .2); /* adds box shadow */
 }
 
 .btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0,0,0, .2); /* smaller shadow, less blur after clicking button */
+  transform: translateY(-.1rem);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0, .2); /* smaller shadow, less blur after clicking button */
 }
 
 .btn-white {
@@ -164,7 +174,7 @@ body {
   height: 100%;
   width: 100%; /* pseudo elem treated like child of btn, so 100% of btn height/width */
   position: absolute;
-  border-radius: 100px;
+  border-radius: 10rem;
   top: 0;
   left: 0;
   z-index: -1; /* position of elements if they are overlapping/on top of each other */
