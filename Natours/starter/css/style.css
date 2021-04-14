@@ -47,17 +47,17 @@ body {
   clip-path: polygon(0 0,100% 0,100% 75vh, 0 100%); /*path of img still visible. top left, top right, bottom right, bottom left. clippy clip path maker. */
 }
 
-.logo-box {
+.header__logo-box {
   position: absolute;
   top: 4rem;
   left: 4rem; /* these measurements start from parent container (header). parent must be set to relative position*/
 }
 
-.logo {
+.header__logo {
   height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
   position: absolute;
   top: 40%; /* in relation to parent element */
   left: 50%;
@@ -73,7 +73,7 @@ body {
   margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
   display: block; /* occupy entire available width, create line breaks before and after */
   font-size: 6rem;
   font-weight: 40rem;
@@ -86,7 +86,7 @@ body {
   /* animation-delay: 3s; */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
   display: block;
   font-size: 2rem;
   font-weight: 70rem;
@@ -161,7 +161,7 @@ body {
   box-shadow: 0 .5rem 1rem rgba(0,0,0, .2); /* smaller shadow, less blur after clicking button */
 }
 
-.btn-white {
+.btn--white {
   background-color: #fff;
   color:#777;
 
@@ -190,7 +190,7 @@ body {
   opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
   animation-name: moveInBottom;
   animation-duration: 0.5s;
   animation-timing-function: ease-out;
