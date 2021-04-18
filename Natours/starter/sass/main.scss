@@ -1,0 +1,206 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-grey-dark: #777;
+$color-white: #fff;
+
+/* simple reset using universal selector. default padding/margin for cross browser functionality. */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* rest of elements will not inherit box-sizing from body declaration */
+}
+
+html {
+  /*font-size: 10px;   now 1 rem = 10px  */
+  font-size: 62.5%; /* default font size is 16px. 10 is 62.5% of 16. allows user to zooom in/resize.  */
+}
+
+body {
+  /* any rules related to font put in body rule. properties related to font are inherited, body is parent */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7; /*1.7 times bigger than predefined line height*/
+  color: $color-grey-dark;
+  padding: 3rem; /* white padding around the whole body */
+
+  box-sizing: border-box; /* change box model so border and padding not added to total width/height */
+}
+
+.header {
+  height: 95vh; /* at every point, height of header is 95% of viewport height*/
+  background-image: linear-gradient(
+    to right bottom, /*direction of gradient*/
+    rgba($color-primary-light, 0.8),
+    rgba($color-primary-dark, 0.8)),
+  url(../img/hero.jpg); /*img under gradient*/
+  background-size: cover; /* img will try to fit width of element/viewport */
+  background-position: top; /*ensure top of image stays at top of container/viewport (bottom will be cropped)*/
+  position: relative;
+
+  clip-path: polygon(0 0,100% 0,100% 75vh, 0 100%); /*path of img still visible. top left, top right, bottom right, bottom left. clippy clip path maker. */
+}
+
+.header__logo-box {
+  position: absolute;
+  top: 4rem;
+  left: 4rem; /* these measurements start from parent container (header). parent must be set to relative position*/
+}
+
+.header__logo {
+  height: 3.5rem;
+}
+
+.header__text-box {
+  position: absolute;
+  top: 40%; /* in relation to parent element */
+  left: 50%;
+  transform: translate(-50%, -50%); /* in relation to element itself. shifts 50% of length of elements height and width */
+  text-align: center; /* for the button */
+}
+
+.heading-primary {
+  color:$color-white;
+  text-transform: uppercase;
+
+  backface-visibility: hidden; /* determines if back part of element is visible. fixes shaking animations */
+  margin-bottom: 6rem;
+}
+
+.heading-primary--main {
+  display: block; /* occupy entire available width, create line breaks before and after */
+  font-size: 6rem;
+  font-weight: 40rem;
+  letter-spacing: 3.5rem;
+
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out; /*how a css animation should progress over the duration of each cycle */
+  /* animation-iteration-count: 3; */
+  /* animation-delay: 3s; */
+}
+
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 70rem;
+  letter-spacing: 1.75rem;
+
+  animation: moveInRight 1s ease-out /* shorthand */
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); /* default behavior is left to right. -100px moves right to left  */
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); /* default behavior is left to right. -100px moves right to left  */
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); 
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+  /* pseudo class. special state of selector.  */
+.btn:link,
+.btn:visited /* visited state */ {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all 0.2s;  /* transition must be on initial state of button/item */
+  position:relative;
+  font-size: 1.6rem
+}
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba(0,0,0, .2); /* adds box shadow */
+}
+
+.btn:active {
+  transform: translateY(-.1rem);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0, .2); /* smaller shadow, less blur after clicking button */
+}
+
+.btn--white {
+  background-color: $color-white;
+  color:$color-grey-dark;
+
+}
+
+/* button that looks exactly like button, but behind it */
+.btn::after {
+  content: "";
+  display:inline-block;
+  height: 100%;
+  width: 100%; /* pseudo elem treated like child of btn, so 100% of btn height/width */
+  position: absolute;
+  border-radius: 10rem;
+  top: 0;
+  left: 0;
+  z-index: -1; /* position of elements if they are overlapping/on top of each other */
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: $color-white;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn--animated {
+  animation-name: moveInBottom;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: .75s;
+  animation-fill-mode: backwards; /* automatically apply syles of 0% animation rules (on moveinBottom) before animation starts */
+}
